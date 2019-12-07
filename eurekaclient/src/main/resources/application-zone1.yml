@@ -1,0 +1,29 @@
+server:
+    port: 8081
+spring:
+    profiles: zone1
+    application:
+        name: eureka-client
+eureka:
+    instance:
+        instanceId: ${spring.application.name}-1
+    client:
+        registryFetchIntervalSeconds: 3
+        shouldDisableDelta: true
+        serviceUrl:
+            defaultZone: http://admin:admin@peer1:8671/eureka/,http://admin:admin@peer2:8673/eureka/,http://admin:admin@peer3:8672/eureka/
+management:
+    security:
+        enabled: false
+    endpoint:
+        shutdown:
+            enabled: true
+    endpoints:
+        web:
+            exposure:
+                include: '*'
+endpoints:
+    actuator:
+        enabled: true
+    shutdown:
+        enabled: true
