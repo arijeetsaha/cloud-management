@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: customer-service
+server:
+  port: 9000
+order-service:
+  ribbon:
+    eureka:
+      enabled: false
+    listOfServers: localhost:7000,localhost:7001
+    ServerListRefreshInterval: 15000
+#Named client for the list of servers: “order-service”
+#Disabled Eureka service discovery component, by setting eureka: enabled to false
+#Defined the list of servers available for load balancing, in this case, 2 servers
+#Configured the server refresh rate with ServerListRefreshInterval

@@ -1,0 +1,11 @@
+spring:
+    application:
+        name: eureka-client
+    cloud:
+        config:
+            uri: http://localhost:8889
+            #profile: instance1
+            #label: master
+            # label: <commitid>
+            failFast: true
+            #retry:

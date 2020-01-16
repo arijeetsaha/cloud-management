@@ -1,0 +1,13 @@
+spring:
+    cloud:
+        config:
+            name: eureka-server
+            discovery:
+                service-id: config-server
+                enabled: true
+            uri: http://root:s3cr3t@localhost:8889
+            profile: ${PROFILE}
+            label: master
+            # label: <commitid>
+            failFast: true
+            #retry:

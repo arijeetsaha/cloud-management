@@ -1,0 +1,28 @@
+server:
+    port: 808${SEQUENCE_NO}
+spring:
+    application:
+        name: eureka-client
+eureka:
+    instance:
+        instanceId: ${spring.application.name}-${SEQUENCE_NO}
+    client:
+        registryFetchIntervalSeconds: 3
+        shouldDisableDelta: true
+        serviceUrl:
+            defaultZone: ${EUREKA_URL:http://localhost:8671/eureka/}
+management:
+    security:
+        enabled: false
+    endpoint:
+        shutdown:
+            enabled: true
+    endpoints:
+        web:
+            exposure:
+                include: '*'
+endpoints:
+    actuator:
+        enabled: true
+    shutdown:
+        enabled: true
