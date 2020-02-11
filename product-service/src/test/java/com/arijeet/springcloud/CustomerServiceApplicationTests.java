@@ -1,10 +1,10 @@
-package com.arijeet.springcloud.cloudmanagement;
+package com.arijeet.springcloud;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CloudManagementApplicationTests {
+class CustomerServiceApplicationTests {
 
 	@Test
 	void contextLoads() {

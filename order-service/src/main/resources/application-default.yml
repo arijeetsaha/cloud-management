@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: order-service
+server:
+  port: ${order.service.port}
+
+eureka:
+  instance:
+    instanceId: ${spring.application.name}-${SEQUENCE_NO}
+  client:
+    registryFetchIntervalSeconds: 3
+    shouldDisableDelta: true
+    serviceUrl:
+      defaultZone: http://admin:admin@peer1:8671/eureka/,http://admin:admin@peer2:8672/eureka/,http://admin:admin@peer3:8673/eureka/

@@ -1,26 +1,16 @@
 spring:
-  profiles:
-    - zone${SEQUENCE_NO}
   application:
-    name: customer-service
+    name: product-service
 server:
-  port: 700${SEQUENCE_NO}
+  port: ${product.service.port}
 eureka:
   instance:
-    instanceId: ${spring.application.name}-zone${SEQUENCE_NO}
-    leaseRenewalIntervalInSeconds: 2
-    leaseExpirationDurationInSeconds: 10
+    instanceId: ${spring.application.name}-${SEQUENCE_NO}
   client:
     registryFetchIntervalSeconds: 3
     shouldDisableDelta: true
     serviceUrl:
       defaultZone: http://admin:admin@peer1:8671/eureka/,http://admin:admin@peer2:8672/eureka/,http://admin:admin@peer3:8673/eureka/
-    preferSameZoneEureka: true
-order-service:
-    ribbon:
-      eureka:
-       enabled: true
-      ServerListRefreshInterval: 15000
 #order-service:
 #  ribbon:
 #    eureka:
