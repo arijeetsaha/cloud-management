@@ -1,0 +1,22 @@
+spring:
+  #profiles:
+  #  - zone${SEQUENCE_NO}
+  application:
+    name: monitor-service
+server:
+  port: 8989
+eureka:
+  instance:
+    instanceId: ${spring.application.name}
+    leaseRenewalIntervalInSeconds: 2
+    leaseExpirationDurationInSeconds: 10
+  client:
+    registryFetchIntervalSeconds: 3
+    shouldDisableDelta: true
+    serviceUrl:
+      defaultZone: http://admin:admin@peer1:8671/eureka/,http://admin:admin@peer2:8672/eureka/,http://admin:admin@peer3:8673/eureka/
+    preferSameZoneEureka: true
+turbine:
+  aggregator:
+    clusterConfig: CUSTOMER-SERVICE
+  appConfig: customer-service

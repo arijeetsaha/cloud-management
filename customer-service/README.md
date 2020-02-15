@@ -12,3 +12,13 @@ account-service:<br/>
    NFLoadBalancerPingClassName: com.netflix.loadbalancer.PingUrl<br/>
    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.WeightedResponseTimeRule<br/>
    
+https://github.com/Netflix/ribbon/wiki/Working-with-load-balancers
+
+####Hytrix Configuration List
+
+https://github.com/Netflix/Hystrix/wiki/Configuration
+
+####Hystrix Dashboard
+
+1. Enabled using @EnableHystrixDashboard
+2. Dashboard - http://localhost:7001/hystrix

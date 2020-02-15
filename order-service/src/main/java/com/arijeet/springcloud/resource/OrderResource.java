@@ -21,7 +21,7 @@ public class OrderResource {
 //        } catch (InterruptedException e) {
 //            e.printStackTrace();
 //        }
-        productService.getProduct("aa");
+//        productService.getProduct("aa");
         UUID uuid = UUID.randomUUID();
         Order order = new Order();
         order.setOrderId(uuid.toString());

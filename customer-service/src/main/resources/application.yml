@@ -21,6 +21,18 @@ order-service:
       eureka:
        enabled: true
       ServerListRefreshInterval: 15000
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - hystrix.stream #Individual instance stream
+#          - turbine.stream #Aggregates all relevant hystrix.stream and healps to monitor the overall health of the system
+#turbine:
+#  app-config: CUSTOMER-SERVICE
+#  aggregator:
+#    cluster-config:
+#      - CUSTOMER-SERVICE
 #order-service:
 #  ribbon:
 #    eureka:

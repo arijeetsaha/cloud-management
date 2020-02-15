@@ -1,6 +1,7 @@
 package com.arijeet.springcloud.controller;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,14 @@ public class CustomerOrderController {
     @Autowired
     private CacheManager cacheManager;
 
-    @HystrixCommand(fallbackMethod = "retryOrder")
+    @HystrixCommand(commandKey = "Customer-PlaceOrder", fallbackMethod = "retryOrder",
+            commandProperties = {
+                    @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "2000"),
+                    @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),
+                    @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "30"),
+                    @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000"),
+                    @HystrixProperty(name = "metrics.rollingStats.timeInMilliseconds", value = "10000")
+            })
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
@@ -41,7 +49,14 @@ public class CustomerOrderController {
         return new Order();
     }
 
-    @HystrixCommand(fallbackMethod = "getOrderFallback")
+    @HystrixCommand(commandKey = "Customer- Get Order",fallbackMethod = "getOrderFallback",
+            commandProperties = {
+                    @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "2000"),
+                    @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),
+                    @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "30"),
+                    @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000"),
+                    @HystrixProperty(name = "metrics.rollingStats.timeInMilliseconds", value = "10000")
+            })
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
